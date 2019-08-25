@@ -1,0 +1,26 @@
+<!-- <div *ngIf="routes$ | async as routes; else notFound"> -->
+  <div *ngIf="routes.length > 0; else notFound">
+  <mat-nav-list>
+    <mat-list-item *ngFor="let route of routes; let i = index">
+      <mat-icon matListIcon color="accent"  (click)="viewRoute(route)">location_on</mat-icon>
+
+      <h3 matLine>{{i+1}}. {{route.start.name}} -- {{route.end.name}}</h3>
+      <p matLine>
+        <span class="demo-2">{{route.description}} </span>
+      </p>
+      <button mat-raised-button color="primary" (click)="editRoute(route)">
+          <mat-icon matListIcon>edit_location</mat-icon>
+       </button>
+       <button mat-raised-button color="warn" (click)="onDeleteRoute(route)">
+          <mat-icon matListIcon>delete</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>
+</div>
+<ng-template #notFound>
+  <mat-card>
+    <mat-card-title>
+      Either you have no routes
+    </mat-card-title>
+  </mat-card>
+</ng-template>

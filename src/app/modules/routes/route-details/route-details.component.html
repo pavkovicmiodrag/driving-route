@@ -1,0 +1,20 @@
+<div *ngIf="route$; else spinner">
+  <mat-card *ngIf="isEdit">
+      <mat-card-subtitle class="error" *ngIf="errorMessages$ | async as errorMessage">
+          {{ errorMessage }}
+      </mat-card-subtitle>
+      <mat-card-content>
+          <app-route-form [route]="route$" (saveRoute)="onUpdateRoute($event)" (sendError)="sendError($event)"></app-route-form>
+      </mat-card-content>
+  </mat-card>
+  <mat-card class="map-container" fxLayout="column" fxLayoutAlign="center stretch" *ngIf="!isEdit">
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-direction [origin]="origin" [destination]="destination">
+      </agm-direction>
+    </agm-map>
+  </mat-card>
+</div>
+
+<ng-template #spinner>
+  <mat-progress-spinner></mat-progress-spinner>
+</ng-template>

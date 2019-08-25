@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>New Route</mat-card-title>
+  <mat-card-subtitle class="error" *ngIf="errorMessages$ | async as errorMessage">
+    {{ errorMessage }}
+  </mat-card-subtitle>
+  <mat-card-content>
+    <app-route-form (saveRoute)="onSaveRoute($event)" (sendError)="onSendError($event)"></app-route-form>
+  </mat-card-content>
+</mat-card>

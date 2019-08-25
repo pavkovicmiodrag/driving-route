@@ -1,0 +1,47 @@
+<div [style.padding.px]="10">
+  <form class="route-form" [formGroup]="routeForm">
+    <div>
+      <div fxLayout="column" fxLayoutGap="32px">
+        <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+          <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="start center" class="row-example">
+            <mat-form-field appearance="fill">
+              <mat-label>Route start location</mat-label>
+              <input matInput gmapsAutocomplete
+                       [country]="'de'"
+                       matValidateAddress
+                       (onAutocompleteSelected)="onAutocompleteSelected($event, true)"
+                       (onLocationSelected)="onLocationSelected($event, true)" placeholder="Start" formControlName="start" required>
+              <mat-icon matPrefix>location_on</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Route end location</mat-label>
+              <input matInput
+              matValidateAddress
+              gmapsAutocomplete
+              [country]="'de'"
+              (onAutocompleteSelected)="onAutocompleteSelected($event, false)"
+              (onLocationSelected)="onLocationSelected($event, false)"
+              placeholder="End"
+              formControlName="end"
+              required>
+              <mat-icon matPrefix>location_on</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+          <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="start center" class="row-example">
+              <mat-form-field appearance="fill">
+                  <mat-label>Route descritpion</mat-label>
+                  <textarea matInput placeholder="Route description" formControlName="description"
+                    cdkTextareaAutosize></textarea>
+                </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button [disabled]="!routeForm.valid" mat-raised-button color="primary" (click)="addRoute()">Save</button>
+        <button type="button" mat-button (click)='cancel()'>Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
